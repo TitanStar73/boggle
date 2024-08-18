@@ -3,11 +3,12 @@ import random
 from datetime import datetime
 
 def is_a_word(word):
-    url = f"https://api.datamuse.com/words?sp={word}&max=1"
-    response = requests.get(url)
-    if response.status_code == 200 and response.json():
-        return response.json()[0]['word'] == word.lower()
-    return False
+    url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
+    response = requests.get(url).json()
+    try:
+        return response[0]["phonetics"][0]["audio"] != ""
+    except:
+        return False
 
 
 print(r"""
@@ -76,9 +77,10 @@ matrix = [
     ['p', 'a', 'c', 'e', 'm', 'd']
 ]
 
-matrix = [random.choice(item) for item in matrix] #16 random letters
-matrix = [[matrix[4*j + i] for i in range(4)] for j in range(4)] #converison to matrix shape 
-matrix = [[letter_conversion[matrix[i][j]] for i in range(4)] for j in range(4)] #convert to block letters
+matrix = [random.choice(item) for item in matrix] #roll 16 dice
+matrix = random.shuffle(matrix) #mix up the dice
+raw_matrix = [[matrix[4*j + i] for i in range(4)] for j in range(4)] #converison to matrix shape 
+matrix = [[letter_conversion[raw_matrix[i][j]] for i in range(4)] for j in range(4)] #convert to block letters
 
 
 for sett in matrix:
