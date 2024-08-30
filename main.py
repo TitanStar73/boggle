@@ -78,7 +78,7 @@ matrix = [
 ]
 
 matrix = [random.choice(item) for item in matrix] #roll 16 dice
-matrix = random.shuffle(matrix) #mix up the dice
+random.shuffle(matrix) #mix up the dice
 raw_matrix = [[matrix[4*j + i] for i in range(4)] for j in range(4)] #converison to matrix shape 
 matrix = [[letter_conversion[raw_matrix[i][j]] for i in range(4)] for j in range(4)] #convert to block letters
 
