@@ -9,3 +9,6 @@ Just run `main.py` (no dependencies) OR run `main.exe` (in the latest release!) 
 # Features
 - Logs time taken
 - Check if words are real
+
+# Credits
+ - Ascii art for text from [here](https://patorjk.com/software/taag/#p=display&f=Big&t=A)
